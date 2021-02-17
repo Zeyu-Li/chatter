@@ -53,22 +53,22 @@ code {
 .speak-me {
   width: max-content;
   text-align: left;
-  margin-bottom: 0;
+  margin-bottom: 4px;
   background-color: rgb(47, 255, 47);
   padding: 7px;
   border-radius: 15px;
   border-bottom-left-radius: 0px;
-  max-width: 650px;
+  max-width: 500px;
 }
 .speak-you {
   width: max-content;
   margin-left: auto;
-  margin-bottom: 0;
+  margin-bottom: 4px;
   padding: 7px;
   background-color: aliceblue;
   border-radius: 15px;
   border-bottom-right-radius: 0px;
-  max-width: 650px;
+  max-width: 500px;
 }
 .chat-title {
   width: max-content;

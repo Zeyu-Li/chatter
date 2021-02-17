@@ -43,6 +43,7 @@ export const styles = {
     },
     chatWrap: {
         height: "70vh",
+        overflowY: "auto",
         padding: "40px",
         borderRadius: "20px",
         backgroundColor: "white",
