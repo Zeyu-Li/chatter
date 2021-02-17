@@ -7,6 +7,29 @@ export const styles = {
         textAlign: "left",
     },
     headerImg: {
-        height: "20vh",
+        height: "25vh",
+        minHeight: "100px",
+        marginTop: "20px",
+    },
+    headerImgDiv: {
+        textAlign: "center",
+    },
+    formWrap: {
+        padding: "40px",
+        borderRadius: "20px",
+        backgroundColor: "white",
+    },
+    boxHeader: {
+        textAlign: "center",
+        fontSize: "3em",
+        paddingBottom: "20px",
+    },
+    bottom: {
+        marginTop: "40px",
+        textAlign: "center",
+        justifyItems: "center",
+    },
+    links: {
+        textDecoration: "none",
     },
 }
