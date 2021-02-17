@@ -1,15 +1,24 @@
 import react, {useState, useEffect} from 'react';
 import {styles} from './styles.js'
 import {
-    BrowserRouter as NavLink, Link
+    BrowserRouter as NavLink, Link, useHistory
     } from "react-router-dom"
 import {Form, Button} from 'react-bootstrap'
 
 export default function Login() {
+    // login is also the front/first screen
+    const history = useHistory()
     // change title
     useEffect(() => {
         document.title = "Chatter | Login"
     }, []);
+
+    const submit = () => {
+        // TODO: authenticate
+        
+        // if auth, then go to home page
+        history.push('/home')
+    }
 
     return (
         <>
@@ -32,7 +41,7 @@ export default function Login() {
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group> */}
                 <div className="submit_button">
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" onClick={submit}>
                     Log In
                 </Button>
                 </div>

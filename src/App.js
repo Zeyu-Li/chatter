@@ -5,6 +5,7 @@ import Login from './Login';
 import Register from './Register';
 import ResetPassword from './ResetPassword';
 import Home from './Home';
+import Chat from './Chat';
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,6 +19,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="App">
+      {/* routes */}
     <Router>
       <Switch>
       {/* Home Path */}
@@ -44,6 +46,10 @@ function App() {
         <FormWrapper>
           <Home />
         </FormWrapper>
+      </Route>
+      
+      <Route path="/chat">
+        <Chat />
       </Route>
       </Switch>
     </Router>

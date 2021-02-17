@@ -13,7 +13,7 @@ code {
     monospace;
 }
 
-.transition, a {
+.transition, a,.speak-me, .speak-you {
     transition: .2s;
     -moz-transition: .2s;
     -webkit-transition: .2s;
@@ -37,7 +37,43 @@ code {
 .submit_button {
   text-align: center;
 }
+.leave_button {
+  float: right;
+  padding: .5em!important;
+  padding-right: 2em!important;
+  padding-left: 2em!important;
+  font-size: 1.5em!important;
+}
 .home-buttons {
   margin: auto;
   width: 80%;
+}
+
+/* chat room */
+.speak-me {
+  width: max-content;
+  text-align: left;
+  margin-bottom: 0;
+  background-color: rgb(47, 255, 47);
+  padding: 7px;
+  border-radius: 15px;
+  border-bottom-left-radius: 0px;
+  max-width: 650px;
+}
+.speak-you {
+  width: max-content;
+  margin-left: auto;
+  margin-bottom: 0;
+  padding: 7px;
+  background-color: aliceblue;
+  border-radius: 15px;
+  border-bottom-right-radius: 0px;
+  max-width: 650px;
+}
+.chat-title {
+  width: max-content;
+  display: inline;
+}
+.bottom-space {
+  margin-bottom: 20px;
 }

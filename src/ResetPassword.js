@@ -6,6 +6,7 @@ import {
 import {Form, Button} from 'react-bootstrap';
 
 export default function ResetPassword() {
+    // resets password given email
     // change title
     useEffect(() => {
         document.title = "Chatter | Reset Password"

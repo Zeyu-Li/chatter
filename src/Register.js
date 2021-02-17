@@ -1,15 +1,25 @@
 import react, {useState, useEffect} from 'react';
 import {styles} from './styles.js'
 import {
-    BrowserRouter as NavLink, Link
+    BrowserRouter as NavLink, Link, useHistory
   } from "react-router-dom";
 import {Form, Button, Col} from 'react-bootstrap';
 
 export default function Register() {
+    // registers user
+    
+    const history = useHistory()
     // change title
     useEffect(() => {
         document.title = "Chatter | Register"
     }, []);
+
+    const register_me = () => {
+        // TODO: auth
+
+        // if auth go to login screen
+        history.push('/')
+    }
 
     return (
         <>
@@ -46,7 +56,7 @@ export default function Register() {
             </Form.Group>
 
             <div className="submit_button">
-            <Button variant="primary" type="submit" className="submit_button">
+            <Button variant="primary" type="submit" className="submit_button" onClick={register_me}>
                 Sign Up
             </Button>
             </div>

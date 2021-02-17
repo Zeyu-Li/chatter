@@ -1,3 +1,4 @@
+// all inline styles
 export const styles = {
     container: {
         marginTop: "5vh",
@@ -32,5 +33,18 @@ export const styles = {
     },
     links: {
         textDecoration: "none",
+    },
+    chatTitle: {
+        fontSize: "3em",
+        marginTop: "40px",
+        marginBottom: "20px",
+        paddingLeft: "20px",
+        paddingRight: "20px",
+    },
+    chatWrap: {
+        height: "70vh",
+        padding: "40px",
+        borderRadius: "20px",
+        backgroundColor: "white",
     },
 }
