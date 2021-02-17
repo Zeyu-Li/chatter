@@ -26,6 +26,7 @@ export const styles = {
     },
     bottom: {
         marginTop: "40px",
+        marginBottom: "40px",
         textAlign: "center",
         justifyItems: "center",
     },

@@ -33,3 +33,7 @@ code {
   font-size: larger;
   display: inline;
 }
+
+.submit_button {
+  text-align: center;
+}

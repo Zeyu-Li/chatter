@@ -3,6 +3,7 @@ import './App.css';
 import FormWrapper from './FormWrapper';
 import Login from './Login';
 import Register from './Register';
+import ResetPassword from './ResetPassword';
 import {
   BrowserRouter as Router,
   Switch,
@@ -35,7 +36,7 @@ function App() {
       </Route>
       <Route path="/password_reset">
         <FormWrapper>
-          <Login />
+          <ResetPassword />
         </FormWrapper>
       </Route>
       </Switch>
