@@ -4,6 +4,8 @@ import {
     BrowserRouter as NavLink, Link, useHistory
   } from "react-router-dom";
 import {Form, Button, Col, InputGroup, FormControl} from 'react-bootstrap';
+// icon from react-icons
+import {MdSend} from 'react-icons/md'; 
 
 export default function Chat() {
     // a standard chat room
@@ -42,6 +44,9 @@ export default function Chat() {
     const send_msg = () => {
         // append message to state
         // console.log(chat_msg)
+        // if nothing, return
+        if (chat_msg.trim() === '') { return }
+
         // TODO: websockets + check message if time
         set_msg('')
         setMessages([...messages, [1, chat_msg]])
@@ -52,7 +57,7 @@ export default function Chat() {
         <div className="main">
             <div className="inline bottom-space">
                 <h2 style={styles.chatTitle} className="chat-title">Chatting with {other_user}</h2>
-                <Button variant="danger" type="submit" className="leave_button" onClick={leave}>
+                <Button variant="danger" type="submit" className="leave_button" onClick={leave} title="Leave chat room">
                     Leave
                 </Button>
             </div>
@@ -68,8 +73,8 @@ export default function Chat() {
                 })}
             </div>
             {/* send message */}
-            <div className="container shadow-lg" style={{backgroundColor: "white"}}>
-                <InputGroup className="mb-3">
+            <div>
+                <InputGroup className="mb-3 shadow-lg chat-input">
                     <FormControl
                     aria-label="Chat message"
                     aria-describedby="basic-addon2"
@@ -79,9 +84,12 @@ export default function Chat() {
                     }}
                     onKeyDown={checkEnter}
                     value={chat_msg}
+                    title="Enter your message here" 
                     />
                     <InputGroup.Append>
-                        <Button variant="outline-secondary" onClick={send_msg}>Button</Button>
+                        <Button variant="primary" onClick={send_msg} title="Send">
+                            <MdSend size={18} />
+                        </Button>
                     </InputGroup.Append>
                 </InputGroup>
             </div>

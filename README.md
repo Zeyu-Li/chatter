@@ -12,7 +12,9 @@ A chatting app built on React-Firebase-Websockets that allows you to chat via te
 
 Login screen
 
+![screen2](img/screen2.png)
 
+Chat Screen
 
 ## Packages
 
@@ -20,3 +22,4 @@ Login screen
 * react-router-dom
 * react-bootstrap
 * bootstrap
+* [react-icons](https://www.npmjs.com/package/react-icons)
