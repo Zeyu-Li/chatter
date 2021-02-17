@@ -32,10 +32,10 @@ export default function Home() {
             <h2 style={styles.boxHeader}>Hello {user}</h2>
             <Form>
             <div className="home-buttons">
-                <Button variant="primary" type="submit" className="submit_button" onClick={handleClick} size="lg" block>
+                <Button variant="primary" type="submit" className="submit_button" onClick={handleClick} size="lg" title="Join Random Chatroom" block>
                     Join Random Chat Room
                 </Button>
-                <Button variant="danger" className="submit_button" size="lg" block onClick={logout} >
+                <Button variant="danger" className="submit_button" size="lg" block onClick={logout} title="Logout" >
                     Logout
                 </Button>
             </div>

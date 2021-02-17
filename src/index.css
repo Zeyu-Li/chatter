@@ -51,24 +51,26 @@ code {
 
 /* chat room */
 .speak-me {
+  background-color: rgb(47, 255, 47);
+  word-wrap: break-word;
   width: max-content;
+  max-width: 500px;
   text-align: left;
   margin-bottom: 4px;
-  background-color: rgb(47, 255, 47);
   padding: 7px;
   border-radius: 15px;
   border-bottom-left-radius: 0px;
-  max-width: 500px;
 }
 .speak-you {
+  background-color: aliceblue;
+  word-wrap: break-word;
   width: max-content;
+  max-width: 500px;
   margin-left: auto;
   margin-bottom: 4px;
   padding: 7px;
-  background-color: aliceblue;
   border-radius: 15px;
   border-bottom-right-radius: 0px;
-  max-width: 500px;
 }
 .chat-title {
   width: max-content;
@@ -76,4 +78,16 @@ code {
 }
 .bottom-space {
   margin-bottom: 20px;
+}
+
+/* chat */
+.chat-input {
+  margin-top: 15px;
+  border-radius: 20px;
+}
+.chat-input input {
+  border-radius: 25px;
+}
+.chat-input button {
+  border-radius: 25px;
 }

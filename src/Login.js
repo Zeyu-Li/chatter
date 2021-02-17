@@ -26,8 +26,8 @@ export default function Login() {
             <h2 style={styles.boxHeader}>Login</h2>
             <Form>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label><b>Email address</b></Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Label><b>Email</b></Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" title="Email"/>
                     {/* <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                     </Form.Text> */}
@@ -35,21 +35,21 @@ export default function Login() {
 
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label><b>Password</b></Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control type="password" placeholder="Password" title="Password"/>
                 </Form.Group>
                 {/* <Form.Group controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group> */}
                 <div className="submit_button">
-                <Button variant="primary" type="submit" onClick={submit}>
+                <Button variant="primary" type="submit" onClick={submit} title="Login">
                     Log In
                 </Button>
                 </div>
             </Form>
         </div>
         <div style={styles.bottom} className="inline">
-            <p><Link to="/password_reset">Forget password?</Link></p>
-            <p style={{paddingLeft: "30vw"}}>New user? <Link to="/register">Sign up here</Link></p>
+            <p><Link to="/password_reset" title="Reset Password">Forget password?</Link></p>
+            <p style={{paddingLeft: "30vw"}}>New user? <Link to="/register" title="Sign Up">Sign up here</Link></p>
         </div>
         </>
     )

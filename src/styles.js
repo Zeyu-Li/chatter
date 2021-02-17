@@ -48,4 +48,8 @@ export const styles = {
         borderRadius: "20px",
         backgroundColor: "white",
     },
+    chatInput: {
+        marginTop: "15px",
+        borderRadius: "20px",
+    },
 }

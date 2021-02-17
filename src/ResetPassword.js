@@ -18,22 +18,22 @@ export default function ResetPassword() {
             <h2 style={styles.boxHeader}>Reset Password</h2>
             <Form>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label><b>Email address</b></Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Label><b>Email</b></Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" title="Email"/>
                     {/* <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                     </Form.Text> */}
                 </Form.Group>
 
                 <div className="submit_button">
-                <Button variant="primary" type="submit" className="submit_button">
+                <Button variant="primary" type="submit" className="submit_button" title="Submit">
                     Submit
                 </Button>
                 </div>
             </Form>
         </div>
         <div style={styles.bottom} className="inline">
-            <p><Link to="/login">Back to login</Link></p>
+            <p><Link to="/login" title="Back to Login">Back to login</Link></p>
         </div>
         </>
     )
