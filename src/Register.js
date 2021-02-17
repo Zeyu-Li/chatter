@@ -53,7 +53,7 @@ export default function Register() {
             </Form>
         </div>
         <div style={styles.bottom} className="inline">
-            <p><Link to="/home">Back to login</Link></p>
+            <p><Link to="/login">Back to login</Link></p>
         </div>
         </>
     )

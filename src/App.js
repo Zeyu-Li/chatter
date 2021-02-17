@@ -4,6 +4,7 @@ import FormWrapper from './FormWrapper';
 import Login from './Login';
 import Register from './Register';
 import ResetPassword from './ResetPassword';
+import Home from './Home';
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,7 +26,7 @@ function App() {
           <Login />
         </FormWrapper>
       </Route>
-      <Route path="/home">
+      <Route path="/login">
         <Redirect to="/" />
       </Route>
 
@@ -37,6 +38,11 @@ function App() {
       <Route path="/password_reset">
         <FormWrapper>
           <ResetPassword />
+        </FormWrapper>
+      </Route>
+      <Route path="/home">
+        <FormWrapper>
+          <Home />
         </FormWrapper>
       </Route>
       </Switch>

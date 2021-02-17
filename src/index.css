@@ -37,3 +37,7 @@ code {
 .submit_button {
   text-align: center;
 }
+.home-buttons {
+  margin: auto;
+  width: 80%;
+}
