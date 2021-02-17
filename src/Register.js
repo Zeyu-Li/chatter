@@ -23,7 +23,7 @@ export default function Register() {
 
     return (
         <>
-        <div className="container shadow-lg" style={styles.formWrap}>
+        <div className="container shadow-lg glassy" style={styles.formWrap}>
             <h2 style={styles.boxHeader}>Register</h2>
             <Form>
             <Form.Row>

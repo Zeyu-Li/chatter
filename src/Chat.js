@@ -55,13 +55,16 @@ export default function Chat() {
 
     return (
         <div className="main">
+            <div className="backdropImgDiv">
+                <img src={process.env.PUBLIC_URL + '/img/rotatedLogo.svg'} alt="Backdrop" className="backdropImg" />
+            </div>
             <div className="inline bottom-space">
                 <h2 style={styles.chatTitle} className="chat-title">Chatting with {other_user}</h2>
                 <Button variant="danger" type="submit" className="leave_button" onClick={leave} title="Leave chat room">
                     Leave
                 </Button>
             </div>
-            <div className="container shadow-lg" style={styles.chatWrap}>
+            <div className="container shadow-lg glassy" style={styles.chatWrap}>
                 {/* chat message */}
                 {/* TODO: Map */}
                 {messages.map(([speaker, item], index) => {

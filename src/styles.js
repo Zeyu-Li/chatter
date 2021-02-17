@@ -18,7 +18,6 @@ export const styles = {
     formWrap: {
         padding: "40px",
         borderRadius: "20px",
-        backgroundColor: "white",
     },
     boxHeader: {
         textAlign: "center",
@@ -46,7 +45,6 @@ export const styles = {
         overflowY: "auto",
         padding: "40px",
         borderRadius: "20px",
-        backgroundColor: "white",
     },
     chatInput: {
         marginTop: "15px",

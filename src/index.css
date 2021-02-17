@@ -5,7 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #c3e3f0!important;
+  background: linear-gradient(
+    to right top,
+    #6fe1f0,
+    #c3ebf0
+    )!important;
+    /* background-color: #c3ebf0!important; */
 }
 
 code {
@@ -90,4 +95,32 @@ code {
 }
 .chat-input button {
   border-radius: 25px;
+}
+
+/* glassy style */
+.glassy {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.4)
+  );
+  backdrop-filter: blur(.7rem);
+}
+
+/* backdrop */
+.backdropImgDiv {
+  float: top;
+  text-align: center;
+}
+.backdropImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 50vw;
+  max-width: 60vh;
+  max-height: 60vh;
+  opacity: .5;
 }

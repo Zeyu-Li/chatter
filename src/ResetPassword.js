@@ -14,7 +14,7 @@ export default function ResetPassword() {
 
     return (
         <>
-        <div className="container shadow-lg" style={styles.formWrap}>
+        <div className="container shadow-lg glassy" style={styles.formWrap}>
             <h2 style={styles.boxHeader}>Reset Password</h2>
             <Form>
                 <Form.Group controlId="formBasicEmail">

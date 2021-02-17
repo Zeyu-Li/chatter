@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import FormWrapper from './FormWrapper';
 import Login from './Login';
@@ -19,6 +18,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="App">
+      {/* logo */}
       {/* routes */}
     <Router>
       <Switch>

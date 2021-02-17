@@ -22,7 +22,7 @@ export default function Login() {
 
     return (
         <>
-        <div className="container shadow-lg" style={styles.formWrap}>
+        <div className="container shadow-lg glassy" style={styles.formWrap}>
             <h2 style={styles.boxHeader}>Login</h2>
             <Form>
                 <Form.Group controlId="formBasicEmail">

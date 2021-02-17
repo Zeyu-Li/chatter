@@ -28,7 +28,7 @@ export default function Home() {
 
     return (
         <>
-        <div className="container shadow-lg" style={styles.formWrap}>
+        <div className="container shadow-lg glassy" style={styles.formWrap}>
             <h2 style={styles.boxHeader}>Hello {user}</h2>
             <Form>
             <div className="home-buttons">
