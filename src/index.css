@@ -25,9 +25,8 @@ code {
   display: block;
   max-width: 960px;
   min-height: 65vh;
-  margin: 0 auto -188px;
-  margin-top: 10vh;
-  margin-bottom: 5vh;
+  margin: 0 auto;
+  margin-top: 5vh;
 }
 
 .inline p {
