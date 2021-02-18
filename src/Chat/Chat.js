@@ -1,5 +1,5 @@
 import react, {useState, useEffect, useCallback} from 'react';
-import {styles} from './styles.js'
+import {styles} from '../styles/styles.js'
 import {
     BrowserRouter as NavLink, Link, useHistory
   } from "react-router-dom";

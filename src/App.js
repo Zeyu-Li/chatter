@@ -1,10 +1,10 @@
 import './App.css';
-import FormWrapper from './FormWrapper';
-import Login from './Login';
-import Register from './Register';
-import ResetPassword from './ResetPassword';
-import Home from './Home';
-import Chat from './Chat';
+import FormWrapper from './Forms/FormWrapper';
+import Login from './Forms/Login';
+import Register from './Forms/Register';
+import ResetPassword from './Forms/ResetPassword';
+import Home from './Home/Home';
+import Chat from './Chat/Chat';
 import {
   BrowserRouter as Router,
   Switch,
