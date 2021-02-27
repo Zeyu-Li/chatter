@@ -8,13 +8,13 @@ A chatting app built on React-Firebase-Websockets that allows you to chat via te
 
 ## Demo
 
-![login_page](img/login_page.png)
+![login_page](img/new_login.png)
 
-Login screen
+Login screen ^^
 
-![screen2](img/screen2.png)
+![screen2](img/new_chat.png)
 
-Chat Screen
+Chat Screen ^^
 
 ## Packages
 

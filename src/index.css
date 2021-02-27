@@ -10,6 +10,7 @@ body {
     #6fe1f0,
     #c3ebf0
     )!important;
+    min-height: 100vh;
     /* background-color: #c3ebf0!important; */
 }
 
@@ -123,4 +124,5 @@ code {
   max-width: 60vh;
   max-height: 60vh;
   opacity: .5;
+  z-index: -10;
 }
