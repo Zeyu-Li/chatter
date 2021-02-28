@@ -23,7 +23,7 @@ export default function Login() {
     const signMeIn = async (event) => {
         await signIn(email, password)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 if (res === true) {
                     history.push('/home')
                 } else {
