@@ -50,4 +50,9 @@ export const styles = {
         marginTop: "15px",
         borderRadius: "20px",
     },
+    popup: {
+        position: "fixed",
+        right: "10px",
+        bottom: "10px",
+    },
 }
