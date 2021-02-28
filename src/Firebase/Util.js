@@ -6,3 +6,6 @@ export const currentUser = () => {
     return {}
 } 
 
+export const getUsername = () => {
+    return "John"
+} 

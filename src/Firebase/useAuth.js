@@ -6,7 +6,6 @@ import {currentUser} from './Util'
 export const useAuth = () => {
     const [authInfo, setAuthInfo] = useState(()=>{
         const user = currentUser()
-        console.log(user)
         return {user}
     })
 

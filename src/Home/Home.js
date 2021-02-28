@@ -4,7 +4,8 @@ import {
     BrowserRouter as NavLink, Link, useHistory 
 } from "react-router-dom"
 import {Form, Button, Col} from 'react-bootstrap'
-import { currentUser } from '../Firebase/Util'
+import { signOut } from '../Firebase/SignOut'
+import { currentUser, getUsername } from '../Firebase/Util'
 
 export default function Home() {
     // home is just two buttons currently, join a chat room and logout
@@ -15,7 +16,7 @@ export default function Home() {
     }, []);
 
     // current user
-    let user = currentUser
+    let user = getUsername()
     const history = useHistory()
     // TODO: chat UID
     const handleClick = () => {
@@ -23,9 +24,14 @@ export default function Home() {
         const UID = "1410"
         history.push('/chat/'+ UID)
     }
-    const logout = () => {
-        // TODO: logout and go to login
-        history.push('/')
+    const logout = async () => {
+        // logout and go to login
+        try {
+            await signOut()
+            history.push('/')
+        } catch (e) {
+            alert(e.message)
+        }
     }
 
     return (
