@@ -1,9 +1,9 @@
-import react, {useState, useEffect} from 'react';
+import react, {useState, useEffect} from 'react'
 import {styles} from '../styles/styles.js'
 import {
     BrowserRouter as NavLink, Link, useHistory
-  } from "react-router-dom";
-import {Form, Button, Col} from 'react-bootstrap';
+  } from "react-router-dom"
+import {Form, Button, Col} from 'react-bootstrap'
 
 export default function Register() {
     // registers user

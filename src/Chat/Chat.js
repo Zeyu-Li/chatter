@@ -1,11 +1,11 @@
-import react, {useState, useEffect, useCallback} from 'react';
+import react, {useState, useEffect, useCallback} from 'react'
 import {styles} from '../styles/styles.js'
 import {
     BrowserRouter as NavLink, Link, useHistory
-  } from "react-router-dom";
-import {Form, Button, Col, InputGroup, FormControl} from 'react-bootstrap';
+  } from "react-router-dom"
+import {Form, Button, Col, InputGroup, FormControl} from 'react-bootstrap'
 // icon from react-icons
-import {MdSend} from 'react-icons/md'; 
+import {MdSend} from 'react-icons/md';
 
 export default function Chat() {
     // a standard chat room

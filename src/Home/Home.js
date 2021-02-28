@@ -1,9 +1,10 @@
-import react, {useState, useEffect} from 'react';
+import react, {useState, useEffect} from 'react'
 import {styles} from '../styles/styles.js'
 import {
     BrowserRouter as NavLink, Link, useHistory 
-  } from "react-router-dom";
-import {Form, Button, Col} from 'react-bootstrap';
+} from "react-router-dom"
+import {Form, Button, Col} from 'react-bootstrap'
+import { currentUser } from '../Firebase/Util'
 
 export default function Home() {
     // home is just two buttons currently, join a chat room and logout
@@ -13,7 +14,8 @@ export default function Home() {
         document.title = "Chatter | Home"
     }, []);
 
-    let user = "John"
+    // current user
+    let user = currentUser
     const history = useHistory()
     // TODO: chat UID
     const handleClick = () => {

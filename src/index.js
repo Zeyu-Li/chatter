@@ -4,6 +4,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// firebase auth
+import firebase from 'firebase/app'
+import 'firebase/analytics'
+import 'firebase/auth'
+var firebaseConfig = {
+  apiKey: "AIzaSyA1GGbvuriyk8-cii3oQJquDEFLpvj5dYU",
+  authDomain: "chatter-334a3.firebaseapp.com",
+  projectId: "chatter-334a3",
+  storageBucket: "chatter-334a3.appspot.com",
+  messagingSenderId: "459734418610",
+  appId: "1:459734418610:web:72170fc8a40fde017375ab",
+  measurementId: "G-V82FMJQT8M"
+}
+
+// init firebase
+firebase.initializeApp(firebaseConfig)
+firebase.analytics()
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

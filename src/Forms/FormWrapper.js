@@ -1,4 +1,4 @@
-import react, {useState} from 'react';
+import react, {useState} from 'react'
 import {styles} from '../styles/styles.js'
 
 export default function FormWrapper(props) {

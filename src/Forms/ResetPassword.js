@@ -1,9 +1,9 @@
-import react, {useState, useEffect} from 'react';
+import react, {useState, useEffect} from 'react'
 import {styles} from '../styles/styles.js'
 import {
     BrowserRouter as NavLink, Link
-  } from "react-router-dom";
-import {Form, Button} from 'react-bootstrap';
+  } from "react-router-dom"
+import {Form, Button} from 'react-bootstrap'
 
 export default function ResetPassword() {
     // resets password given email

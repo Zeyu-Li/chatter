@@ -1,4 +1,4 @@
-import react, {useState, useEffect} from 'react';
+import react, {useState, useEffect} from 'react'
 import {styles} from '../styles/styles.js'
 import {
     BrowserRouter as NavLink, Link, useHistory

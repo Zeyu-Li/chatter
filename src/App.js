@@ -5,17 +5,21 @@ import Register from './Forms/Register';
 import ResetPassword from './Forms/ResetPassword';
 import Home from './Home/Home';
 import Chat from './Chat/Chat';
+import {ProtectedRoute, UnprotectedRoute} from './ProtectedRoute';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
+import { useAuth } from './Firebase/useAuth';
 
 // bootstrap css
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const {user} = useAuth()
+
   return (
     <div className="App">
       {/* logo */}
@@ -23,34 +27,34 @@ function App() {
     <Router>
       <Switch>
       {/* Home Path */}
-      <Route exact path="/">
+      <UnprotectedRoute isAuth={!!user} exact path="/">
         <FormWrapper>
           <Login />
         </FormWrapper>
-      </Route>
+      </UnprotectedRoute>
       <Route path="/login">
         <Redirect to="/" />
       </Route>
 
-      <Route path="/register">
+      <UnprotectedRoute isAuth={!!user} path="/register">
         <FormWrapper>
           <Register />
         </FormWrapper>
-      </Route>
-      <Route path="/password_reset">
+      </UnprotectedRoute>
+      <UnprotectedRoute isAuth={!!user} path="/password_reset">
         <FormWrapper>
           <ResetPassword />
         </FormWrapper>
-      </Route>
-      <Route path="/home">
+      </UnprotectedRoute>
+      <ProtectedRoute isAuth={!!user} path="/home">
         <FormWrapper>
           <Home />
         </FormWrapper>
-      </Route>
+      </ProtectedRoute>
       
-      <Route path="/chat">
+      <ProtectedRoute isAuth={!!user} path="/chat">
         <Chat />
-      </Route>
+      </ProtectedRoute>
       </Switch>
     </Router>
     </div>
