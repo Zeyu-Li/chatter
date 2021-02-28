@@ -1,5 +1,6 @@
 import react, {useState, useEffect} from 'react'
 import {styles} from '../styles/styles.js'
+import {signIn} from '../Firebase/SignIn'
 import {
     BrowserRouter as NavLink, Link, useHistory
     } from "react-router-dom"
@@ -13,11 +14,19 @@ export default function Login() {
         document.title = "Chatter | Login"
     }, []);
 
-    const submit = () => {
-        // TODO: authenticate
-        
-        // if auth, then go to home page
-        history.push('/home')
+    // email password
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const submit = async () => {
+        // authenticate
+        try {
+            await signIn(email, password)
+            // if auth, then go to home page
+            history.push('/home')
+        } catch (e) {
+            console.log("error")
+        }
     }
 
     return (
@@ -27,7 +36,7 @@ export default function Login() {
             <Form>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label><b>Email</b></Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" title="Email"/>
+                    <Form.Control type="email" placeholder="Enter email" title="Email" value={email} onChange={e => setEmail(e.target.value)} />
                     {/* <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                     </Form.Text> */}
@@ -35,7 +44,7 @@ export default function Login() {
 
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label><b>Password</b></Form.Label>
-                    <Form.Control type="password" placeholder="Password" title="Password"/>
+                    <Form.Control type="password" placeholder="Password" title="Password" value={password} onChange={e => setPassword(e.target.value)} />
                 </Form.Group>
                 {/* <Form.Group controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
