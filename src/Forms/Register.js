@@ -4,6 +4,8 @@ import {
     BrowserRouter as NavLink, Link, useHistory
   } from "react-router-dom"
 import {Form, Button, Col} from 'react-bootstrap'
+import {register} from '../Firebase/Register'
+import {Popup} from '../Popup'
 // recaptcha
 import {
     GoogleReCaptchaProvider,
@@ -14,16 +16,48 @@ export default function Register() {
     // registers user
     
     const history = useHistory()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [validated, setValidated] = useState(false)
+    const [passwordNotMatch, setPasswordNotMatch] = useState(false)
     // change title
     useEffect(() => {
         document.title = "Chatter | Register"
     }, []);
+    
+    const registerMe = async (event) => {
+        await register(email, password)
+            .then(res => {
+                if (res === true) {
+                    // go to login screen
+                    history.push('/')
+                } else {
+                    event.preventDefault()
+                    event.stopPropagation()
+                    setValidated(false)
+                    setValidated(true)
+                }
+            })
+    }
 
-    const register_me = () => {
-        // TODO: auth
-
-        // if auth go to login screen
-        history.push('/')
+    const onRegister = async (event) => {
+        // front end check
+        const form = event.currentTarget
+        if (form.checkValidity() === false) {
+            event.preventDefault()
+            event.stopPropagation()
+            setValidated(true)
+            return
+        } else if (password !== confirmPassword) {
+            event.preventDefault()
+            event.stopPropagation()
+            setPasswordNotMatch(true)
+            setPasswordNotMatch(false)
+            return
+        }
+        // authenticate
+        await registerMe(event)
     }
 
     return (
@@ -31,28 +65,40 @@ export default function Register() {
         <>
         <div className="container shadow-lg glassy" style={styles.formWrap}>
             <h2 style={styles.boxHeader}>Register</h2>
-            <Form>
+            <Form noValidate validated={validated} onSubmit={onRegister}>
             <Form.Row>
                 <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Label><b>Username</b></Form.Label>
-                    <Form.Control type="text" placeholder="Username" title="Username"/>
+                    <Form.Control required type="text" placeholder="Username" title="Username"/>
+                    <Form.Control.Feedback type="invalid">
+                        Username taken
+                    </Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
             <Form.Row>
                 <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Label><b>Email</b></Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" title="Email"/>
+                    <Form.Control required type="email" placeholder="Enter email" title="Email" value={email} onChange={e => setEmail(e.target.value)} />
+                    <Form.Control.Feedback type="invalid">
+                        This email is not valid
+                    </Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
             <Form.Row>
 
                 <Form.Group as={Col} controlId="formGridPassword">
                     <Form.Label><b>Password</b></Form.Label>
-                    <Form.Control type="password" placeholder="Password" title="Password"/>
+                    <Form.Control required type="password" placeholder="Password" title="Password" value={password} onChange={e => setPassword(e.target.value)} />
+                    <Form.Control.Feedback type="invalid">
+                        This password is not valid
+                    </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} controlId="formGridPassword">
                     <Form.Label><b>Confirm Password</b></Form.Label>
-                    <Form.Control type="password" placeholder="Confirm Password" title="Confirm Password" />
+                    <Form.Control required type="password" placeholder="Confirm Password" title="Confirm Password"  value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+                    <Form.Control.Feedback type="invalid">
+                        Passwords do not match
+                    </Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
 
@@ -62,7 +108,7 @@ export default function Register() {
             </Form.Group> */}
 
             <div className="submit_button">
-            <Button variant="primary" type="submit" className="submit_button" onClick={register_me} title="Sign Up">
+            <Button variant="primary" type="submit" className="submit_button" title="Sign Up">
                 Sign Up
             </Button>
             </div>
@@ -72,6 +118,8 @@ export default function Register() {
             <p><Link to="/login" title="Back to Login">Back to login</Link></p>
         </div>
         </>
+        {/* password does not match toast */}
+        <Popup msg='Passwords do not match' show={passwordNotMatch} />
         </GoogleReCaptchaProvider>
     )
 }

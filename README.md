@@ -32,7 +32,7 @@ Chat Screen ^^
 
 Firestore properties for user:
 
-```json
+```firebase
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
