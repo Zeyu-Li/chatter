@@ -5,6 +5,7 @@ import {
     BrowserRouter as NavLink, Link, useHistory
     } from "react-router-dom"
 import {Form, Button, Row, Col, Toast} from 'react-bootstrap'
+import {Popup} from '../Popup'
 
 export default function Login() {
     // login is also the front/first screen
@@ -88,20 +89,7 @@ export default function Login() {
         </div>
 
         {/* invalid user toast */}
-        <Col xs={6} >
-            <Toast onClose={() => setinvalidUser(!invalidUser)} show={invalidUser} delay={3500} autohide style={styles.popup}> 
-            <Toast.Header>
-                <img
-                src="holder.js/20x20?text=%20"
-                className="rounded mr-2"
-                alt=""
-                />
-                <strong className="mr-auto">Chatter</strong>
-                <small></small>
-            </Toast.Header>
-            <Toast.Body>Your username or password is incorrect</Toast.Body>
-            </Toast>
-        </Col>
+        <Popup msg='Your username or password is incorrect' show={invalidUser} />
         </>
     )
 }

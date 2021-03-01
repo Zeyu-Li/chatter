@@ -4,6 +4,11 @@ import {
     BrowserRouter as NavLink, Link, useHistory
   } from "react-router-dom"
 import {Form, Button, Col} from 'react-bootstrap'
+// recaptcha
+import {
+    GoogleReCaptchaProvider,
+    GoogleReCaptcha
+} from 'react-google-recaptcha-v3';
 
 export default function Register() {
     // registers user
@@ -22,6 +27,7 @@ export default function Register() {
     }
 
     return (
+        <GoogleReCaptchaProvider reCaptchaKey="6LelIWwaAAAAALvF27U_InBwNV6Ad_PB8T6RcC3A">
         <>
         <div className="container shadow-lg glassy" style={styles.formWrap}>
             <h2 style={styles.boxHeader}>Register</h2>
@@ -50,10 +56,10 @@ export default function Register() {
                 </Form.Group>
             </Form.Row>
 
-            {/* TODO: Captcha (react-google-recaptcha) */}
-            <Form.Group id="formGridCheckbox">
+            {/* ~~Captcha~~ => (react-google-recaptcha) v3 */}
+            {/* <Form.Group id="formGridCheckbox">
                 <Form.Check type="checkbox" label="Robot Check" />
-            </Form.Group>
+            </Form.Group> */}
 
             <div className="submit_button">
             <Button variant="primary" type="submit" className="submit_button" onClick={register_me} title="Sign Up">
@@ -66,5 +72,6 @@ export default function Register() {
             <p><Link to="/login" title="Back to Login">Back to login</Link></p>
         </div>
         </>
+        </GoogleReCaptchaProvider>
     )
 }

@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import firebase from 'firebase/app'
 import 'firebase/analytics'
 import 'firebase/auth'
+import 'firebase/firestore'
 var firebaseConfig = {
   apiKey: "AIzaSyA1GGbvuriyk8-cii3oQJquDEFLpvj5dYU",
   authDomain: "chatter-334a3.firebaseapp.com",

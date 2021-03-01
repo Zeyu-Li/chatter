@@ -5,25 +5,41 @@ import {
 } from "react-router-dom"
 import {Form, Button, Col} from 'react-bootstrap'
 import { signOut } from '../Firebase/SignOut'
-import { currentUser, getUsername } from '../Firebase/Util'
+import { getCurrentUsername } from '../Firestore/getCurrentUsername'
+import { currentUser } from '../Firebase/Util'
+import {Popup} from '../Popup'
 
 export default function Home() {
     // home is just two buttons currently, join a chat room and logout
+    const [loading, setLoading] = useState(false)
+    const [user, setUser] = useState('')
 
-    // change title
-    useEffect(() => {
-        document.title = "Chatter | Home"
-    }, []);
-
-    // current user
-    let user = getUsername()
     const history = useHistory()
     // TODO: chat UID
     const handleClick = () => {
+        // loading popup
+        setLoading(true)
+        setLoading(false)
+
         // TODO: pair with someone and send to room
         const UID = "1410"
         history.push('/chat/'+ UID)
     }
+
+    // change title
+    useEffect(() => {
+        document.title = "Chatter | Home"
+        // current user
+        const setUsername = async () => {
+            const result = await getCurrentUsername().then(
+                // sets username
+                e=>setUser(e.user.username)
+            )
+        }
+
+        setUsername()
+    }, []);
+
     const logout = async () => {
         // logout and go to login
         try {
@@ -49,6 +65,7 @@ export default function Home() {
             </div>
             </Form>
         </div>
+        <Popup msg='Finding a match 🔎' show={loading} />
         </>
     )
 }
