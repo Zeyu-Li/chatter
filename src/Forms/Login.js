@@ -25,7 +25,7 @@ export default function Login() {
         await signIn(email, password)
             .then(res => {
                 // console.log(res)
-                if (res === true) {
+                if (res === true) { 
                     history.push('/home')
                 } else {
                     event.preventDefault()
