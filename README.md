@@ -20,13 +20,13 @@ Chat Screen ^^
 
 ## Packages
 
-* react
-* react-router-dom
-* react-bootstrap
-* bootstrap
+* [react](https://reactjs.org/)
+* [react-router-dom](https://reactrouter.com/web/guides/quick-start)
+* [react-bootstrap](https://react-bootstrap.github.io/)
+* [bootstrap](https://getbootstrap.com/)
 * [react-icons](https://www.npmjs.com/package/react-icons)
+* [react-google-recaptcha-v3](https://www.npmjs.com/package/react-google-recaptcha-v3)
 * firebase
-* react-google-recaptcha-v3
 
 
 
@@ -50,6 +50,5 @@ service cloud.firestore {
   }
 }
 ```
-
 
 
