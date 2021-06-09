@@ -2,7 +2,7 @@ import { BrowserRouter as NavLink, Link, useHistory } from "react-router-dom"
 import react, {useState, useEffect} from 'react'
 import {Form, Button, Col} from 'react-bootstrap'
 
-import {register, nameCheck} from '../Firebase/Firebase'
+import {register, nameCheck, registerName1, registerName2} from '../Firebase/Firebase'
 import {styles} from '../styles/styles.js'
 import {Popup} from '../Popup'
 
@@ -35,17 +35,18 @@ export const Register = () => {
         })
         await register(email, password)
             .then(res => {
-                console.log(res)
-                if (res === true) {
-                    // go to login screen
-                    history.push('/')
-                } else {
-                    setValidated(true)
-                }
-            }).catch(res => {
-                console.log(res)
+                    if (res !== true) {
+                        setValidated(true)
+                    }
+                }).catch(res => {
+                console.log(res.message)
                 setInvalidPassword(true)
+                throw "Could not register"
             })
+        await registerName1(username.trim())
+        await registerName2(username.trim()).then(()=>{
+            history.push('/')
+        })
     }
 
     const onRegister = async (event) => {
@@ -71,7 +72,9 @@ export const Register = () => {
             return
         }
         // authenticate
-        await registerMe().catch(res=>{})
+        await registerMe().catch(res=>{
+            // console.log(res)
+        })
     }
 
     return (
