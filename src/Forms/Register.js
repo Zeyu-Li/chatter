@@ -20,52 +20,58 @@ export const Register = () => {
     const [usernameTakenError, setUsernameTakenError] = useState(false)
     const [passwordNotMatch, setPasswordNotMatch] = useState(false)
     const [validEmail, setValidEmail] = useState(false)
-    const [validPassword, setValidPassword] = useState(false)
+    const [invalidPassword, setInvalidPassword] = useState(false)
     const [validated, setValidated] = useState(false)
     // change title
     useEffect(() => {
         document.title = "Chatter | Register"
     }, []);
     
-    const registerMe = async (event) => {
-        await nameCheck(username).catch(res => {
-            event.preventDefault()
-            event.stopPropagation()
+    const registerMe = async () => {
+        await nameCheck(username.trim()).catch(res => {
             setUsernameTakenError(true)
-            return
+            console.log(res)
+            throw "No username"
         })
         await register(email, password)
             .then(res => {
+                console.log(res)
                 if (res === true) {
                     // go to login screen
                     history.push('/')
                 } else {
-                    event.preventDefault()
-                    event.stopPropagation()
-                    setValidated(false)
                     setValidated(true)
                 }
+            }).catch(res => {
+                console.log(res)
+                setInvalidPassword(true)
             })
     }
 
     const onRegister = async (event) => {
+        // reset state
+        setUsernameTakenError(false)
+        setValidated(false)
+        setPasswordNotMatch(false)
+        setValidEmail(false)
+        setInvalidPassword(false)
+
+        // will redirect when successful
+        event.preventDefault()
+        event.stopPropagation()
+
         // front end check
         const form = event.currentTarget
         if (form.checkValidity() === false) {
-            event.preventDefault()
-            event.stopPropagation()
             setValidated(true)
             return
         } else if (password !== confirmPassword) {
-            event.preventDefault()
-            event.stopPropagation()
-            // setPasswordNotMatch(true)
-            // setPasswordNotMatch(false)
+            setPasswordNotMatch(true)
             setValidated(true)
             return
         }
         // authenticate
-        await registerMe(event)
+        await registerMe().catch(res=>{})
     }
 
     return (
@@ -79,7 +85,7 @@ export const Register = () => {
                     <Form.Label><b>Username</b></Form.Label>
                     <Form.Control required isInvalid={usernameTakenError} type="text" placeholder="Username" title="Username" value={username} onChange={e=>setUsername(e.target.value)}/>
                     <Form.Control.Feedback type="invalid">
-                        Username taken
+                        {!username.trim() || usernameTakenError ? "Username taken" : ""}
                     </Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
@@ -96,14 +102,14 @@ export const Register = () => {
 
                 <Form.Group as={Col} controlId="formGridPassword">
                     <Form.Label><b>Password</b></Form.Label>
-                    <Form.Control required type="password" placeholder="Password" title="Password" value={password} onChange={e => setPassword(e.target.value)} />
+                    <Form.Control required isInvalid={invalidPassword} type="password" placeholder="Password" title="Password" value={password} onChange={e => setPassword(e.target.value)} />
                     <Form.Control.Feedback type="invalid">
-                        This password is not valid
+                        This password is not valid (should be at least 6 characters)
                     </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} controlId="formGridPassword2">
                     <Form.Label><b>Confirm Password</b></Form.Label>
-                    <Form.Control required type="password" placeholder="Confirm Password" title="Confirm Password"  value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+                    <Form.Control required isInvalid={passwordNotMatch} type="password" placeholder="Confirm Password" title="Confirm Password"  value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
                     <Form.Control.Feedback type="invalid">
                         Passwords do not match
                     </Form.Control.Feedback>

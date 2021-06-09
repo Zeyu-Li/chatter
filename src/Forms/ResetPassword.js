@@ -16,24 +16,30 @@ export const ResetPassword = () => {
     const [email, setEmail] = useState('')
     const [showMsg, setShowMsg] = useState(false)
     const [validated, setValidated] = useState(false)
+    const [InvalidEmail, setInvalidEmail] = useState(false)
 
     // calls firebase reset
     const onReset = async (event) => {
+        setInvalidEmail(false)
+        
         // no refresh
         event.preventDefault()
         event.stopPropagation()
         // check form
         const form = event.currentTarget
         if (form.checkValidity() === false) {
-            setValidated(true)
+            setInvalidEmail(true)
             return
         }
 
         // sent reset email via firebase
-        await sendResetPasswordEmail(email).then(()=> {
+        await sendResetPasswordEmail(email.trim()).then(()=> {
             setValidated(true)
-            setShowMsg(false)
+            setInvalidEmail(false)
             setShowMsg(true)
+        }).catch(res => {
+            setInvalidEmail(true)
+            setValidated(false)
         })
     }
 
@@ -44,7 +50,7 @@ export const ResetPassword = () => {
             <Form noValidate validated={validated} onSubmit={onReset}> 
                 <Form.Group controlId="formBasicEmail" controlId="validationUserEmail">
                     <Form.Label><b>Email</b></Form.Label>
-                    <Form.Control required type="email" placeholder="Enter email" title="Email" value={email} onChange={e => setEmail(e.target.value)} />
+                    <Form.Control required isInvalid={InvalidEmail} type="email" placeholder="Enter email" title="Email" value={email} onChange={e => setEmail(e.target.value)} />
                     <Form.Control.Feedback type="invalid">
                         This email is not valid
                     </Form.Control.Feedback>

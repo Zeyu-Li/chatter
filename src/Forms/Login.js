@@ -18,10 +18,10 @@ export const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [validated, setValidated] = useState(false)
-    const [invalidUser, setinvalidUser] = useState(false)
+    const [invalidUser, setInvalidUser] = useState(false)
 
     const signMeIn = async (event) => {
-        await signIn(email, password)
+        await signIn(email.trim(), password)
             .then(res => {
                 // console.log(res)
                 if (res === true) { 
@@ -29,13 +29,15 @@ export const Login = () => {
                 } else {
                     event.preventDefault()
                     event.stopPropagation()
-                    setinvalidUser(false)
-                    setinvalidUser(true)
+                    setInvalidUser(true)
                 }
             })
     }
 
     const submit = async (event) => {
+        setValidated(false)
+        setInvalidUser(false)
+
         // front end check
         const form = event.currentTarget
         if (form.checkValidity() === false) {
