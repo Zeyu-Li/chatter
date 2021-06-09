@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'
 
-export const getUsername = async userId => {
+export const getUsername = async (userId) => {
     // gets user
     const data = await firebase.firestore()
         .collection('users')

@@ -31,7 +31,9 @@ export default function Home() {
         const setUsername = async () => {
             const result = await getCurrentUsername().then(
                 // sets username
-                e=>setUser(e.user.username)
+                e=>{
+                    setUser(e.user.name)
+                }
             )
         }
 
