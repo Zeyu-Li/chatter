@@ -1,13 +1,12 @@
-import react, {useState, useEffect} from 'react'
-import {styles} from '../styles/styles.js'
-import {
-    BrowserRouter as NavLink, Link
-  } from "react-router-dom"
+import { BrowserRouter as NavLink, Link } from "react-router-dom"
+import React, {useState, useEffect} from 'react'
 import {Form, Button} from 'react-bootstrap'
-import {sendResetPasswordEmail} from '../Firebase/sendResetPasswordEmail'
+
+import {sendResetPasswordEmail} from '../Firebase/Firebase'
+import {styles} from '../styles/styles.js'
 import {Popup} from '../Popup'
 
-export default function ResetPassword() {
+export const ResetPassword = () => {
     // resets password given email
     // change title
     useEffect(() => {

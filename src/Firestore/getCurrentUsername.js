@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'
 import {getUsername} from './getUsername'
-import {currentUser} from '../Firebase/Util'
+import {currentUser} from '../Firebase/Firebase'
 
 export const getCurrentUsername = async () => {
     // gets user

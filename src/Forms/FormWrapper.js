@@ -1,7 +1,7 @@
 import react, {useState} from 'react'
 import {styles} from '../styles/styles.js'
 
-export default function FormWrapper(props) {
+export const FormWrapper = (props) => {
     // warps around all forms, includes the logo and the form below
     return (
         <>

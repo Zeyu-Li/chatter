@@ -1,14 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+import './index.css'
+import App from './App'
+import reportWebVitals from './reportWebVitals'
 
 // firebase auth
 import firebase from 'firebase/app'
 import 'firebase/analytics'
 import 'firebase/auth'
 import 'firebase/firestore'
+
 var firebaseConfig = {
   apiKey: "AIzaSyA1GGbvuriyk8-cii3oQJquDEFLpvj5dYU",
   authDomain: "chatter-334a3.firebaseapp.com",

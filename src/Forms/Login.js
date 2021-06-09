@@ -1,13 +1,12 @@
 import react, {useState, useEffect} from 'react'
-import {styles} from '../styles/styles.js'
-import {signIn} from '../Firebase/SignIn'
-import {
-    BrowserRouter as NavLink, Link, useHistory
-    } from "react-router-dom"
 import {Form, Button, Row, Col, Toast} from 'react-bootstrap'
+import { BrowserRouter as NavLink, Link, useHistory } from "react-router-dom"
+
+import {styles} from '../styles/styles.js'
+import {signIn} from '../Firebase/Firebase'
 import {Popup} from '../Popup'
 
-export default function Login() {
+export const Login = () => {
     // login is also the front/first screen
     const history = useHistory()
     // change title

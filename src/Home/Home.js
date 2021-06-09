@@ -1,12 +1,10 @@
 import react, {useState, useEffect} from 'react'
-import {styles} from '../styles/styles.js'
-import {
-    BrowserRouter as NavLink, Link, useHistory 
-} from "react-router-dom"
+import { BrowserRouter as NavLink, useHistory } from "react-router-dom"
 import {Form, Button, Col} from 'react-bootstrap'
-import { signOut } from '../Firebase/SignOut'
-import { getCurrentUsername } from '../Firestore/getCurrentUsername'
-import { currentUser } from '../Firebase/Util'
+
+import { currentUser, signOut } from '../Firebase/Firebase'
+import {getCurrentUsername} from '../Firestore/Firestore'
+import {styles} from '../styles/styles.js'
 import {Popup} from '../Popup'
 
 export default function Home() {
