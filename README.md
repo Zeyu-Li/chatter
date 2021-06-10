@@ -2,7 +2,11 @@
 
 ![logo](public/img/logo.png)
 
-A chatting app built on React-Firebase-Websockets that allows you to chat via text with random people.
+![Vercel](https://vercelbadge.vercel.app/api/Zeyu-Li/chatter)
+
+A chatting app built on React-Firebase/Firestore that allows you to chat via text with random people.
+
+See the live demo [here:](https://chatter-zeyu-li.vercel.app/) [chatter-zeyu-li.vercel.app](https://chatter-zeyu-li.vercel.app/)
 
 
 
@@ -10,11 +14,13 @@ A chatting app built on React-Firebase-Websockets that allows you to chat via te
 
 ![demo](img/demo.gif)
 
+![demo2](img/demo2.gif)
+
 ![login_page](img/new_login.png)
 
 Login screen ^^
 
-![screen2](img/new_chat.png)
+![chat2](img/chat2.png)
 
 Chat Screen ^^
 
@@ -50,5 +56,4 @@ service cloud.firestore {
   }
 }
 ```
-
 
