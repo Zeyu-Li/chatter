@@ -1,9 +1,13 @@
 import react, {useState, useEffect, useCallback} from 'react'
 import { BrowserRouter as NavLink, Link, useHistory } from "react-router-dom"
 import {Form, Button, Col, InputGroup, FormControl} from 'react-bootstrap'
+import firebase from 'firebase/app'
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 // icon from react-icons
 import {MdSend} from 'react-icons/md';
 
+import {ChatMessage} from './ChatMessage'
+import {sendMessage} from './sendMessage'
 import {styles} from '../styles/styles.js'
 
 export default function Chat() {
@@ -12,7 +16,7 @@ export default function Chat() {
     const [chat_msg, set_msg] = useState('')
     // exiting
     const leave = () => {
-        let confirmer = window.confirm("If you leave now you might never chat with this person again")
+        let confirmer = window.confirm("If you leave now you will not see these messages again")
         if( confirmer == true ) {
             history.push('/home')
         }
@@ -30,17 +34,13 @@ export default function Chat() {
         document.title = "Chatter | Chat"
     }, []);
 
-    // text messages
-    const [messages, setMessages] = useState([
-        [1, "Hello"],
-        [2, "Good day"],
-        [1, "Are you John?"],
-        [2, "Whose John?"],
-        [2, "Who are you?"],
-        [1, "Johnny Cash Johnny Cash Johnny Cash Johnny Cash Johnny Cash Johnny Cash Johnny Cash Johnny Cash Johnny Cash Johnny Cash Johnny Cash "],
-    ])
+    const messageRef = firebase.firestore().collection('messages')
+    const query = messageRef.orderBy('createdAt').limit(30)
+
+    const [messages] = useCollectionData(query, {idField: "id"})
+
     // send message
-    const send_msg = () => {
+    const send_msg = async () => {
         // append message to state
         // console.log(chat_msg)
         // if nothing, return
@@ -48,9 +48,8 @@ export default function Chat() {
 
         // TODO: websockets + check message if time
         set_msg('')
-        setMessages([...messages, [1, chat_msg]])
+        await sendMessage(messageRef, chat_msg.trim())
     }
-    let other_user = "John"
 
     return (
         <div className="main">
@@ -58,7 +57,7 @@ export default function Chat() {
                 <img src={process.env.PUBLIC_URL + '/img/rotatedLogo.svg'} alt="Backdrop" className="backdropImg" />
             </div>
             <div className="inline bottom-space">
-                <h2 style={styles.chatTitle} className="chat-title">Chatting with {other_user}</h2>
+                <h2 style={styles.chatTitle} className="chat-title">Chatting in room 1</h2>
                 <Button variant="danger" type="submit" className="leave_button" onClick={leave} title="Leave chat room">
                     Leave
                 </Button>
@@ -66,12 +65,8 @@ export default function Chat() {
             <div className="container shadow-lg glassy" style={styles.chatWrap}>
                 {/* chat message */}
                 {/* TODO: Map */}
-                {messages.map(([speaker, item], index) => {
-                    if (speaker === 1) {
-                        return <p className="speak-me" key={`item-${speaker}-${index}`}>{item}</p>
-                    } else {
-                        return <p className="speak-you" key={`item-${speaker}-${index}`}>{item}</p>
-                    }
+                {messages && messages.map((msg) => {
+                    return <ChatMessage message={msg} key={msg.id} />
                 })}
             </div>
             {/* send message */}

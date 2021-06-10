@@ -20,7 +20,7 @@ export default function Home() {
         setLoading(false)
 
         // TODO: pair with someone and send to room
-        const UID = "1410"
+        const UID = "1"
         history.push('/chat/'+ UID)
     }
 
