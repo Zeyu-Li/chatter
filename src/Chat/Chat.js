@@ -1,4 +1,4 @@
-import react, {useState, useEffect, useCallback} from 'react'
+import react, {useState, useEffect, useCallback, useRef} from 'react'
 import { BrowserRouter as NavLink, Link, useHistory } from "react-router-dom"
 import {Form, Button, Col, InputGroup, FormControl} from 'react-bootstrap'
 import firebase from 'firebase/app'
@@ -13,6 +13,7 @@ import {styles} from '../styles/styles.js'
 export default function Chat() {
     // a standard chat room
     const history = useHistory()
+    const end = useRef()
     const [chat_msg, set_msg] = useState('')
     // exiting
     const leave = () => {
@@ -49,6 +50,7 @@ export default function Chat() {
         // TODO: websockets + check message if time
         set_msg('')
         await sendMessage(messageRef, chat_msg.trim())
+        end.current.scrollIntoView({behavior: 'smooth'})
     }
 
     return (
@@ -68,6 +70,7 @@ export default function Chat() {
                 {messages && messages.map((msg) => {
                     return <ChatMessage message={msg} key={msg.id} />
                 })}
+                <div ref={end}></div>
             </div>
             {/* send message */}
             <div>

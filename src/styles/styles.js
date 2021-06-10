@@ -9,8 +9,11 @@ export const styles = {
     },
     headerImg: {
         height: "25vh",
+        width: "100vw",
         minHeight: "100px",
         marginTop: "20px",
+        marginLeft: "3vw",
+        textAlign: "center",
     },
     headerImgDiv: {
         textAlign: "center",
@@ -34,7 +37,7 @@ export const styles = {
         textDecoration: "none",
     },
     chatTitle: {
-        fontSize: "3em",
+        fontSize: window.innerWidth > 900 ? "3em" : "1.5em",
         marginTop: "40px",
         marginBottom: "20px",
         paddingLeft: "20px",

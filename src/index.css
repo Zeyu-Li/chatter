@@ -45,6 +45,10 @@ code {
 }
 .leave_button {
   float: right;
+  top: 20%;
+  -ms-transform: translate(0%, -20%);
+  transform: translate(0%, -20%);
+
   padding: .5em!important;
   padding-right: 2em!important;
   padding-left: 2em!important;
@@ -84,12 +88,19 @@ code {
 }
 .bottom-space {
   margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 /* chat */
 .chat-input {
   margin-top: 15px;
   border-radius: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.input-group {
+  width: auto!important;
 }
 .chat-input input {
   border-radius: 25px;
@@ -125,4 +136,13 @@ code {
   max-height: 60vh;
   opacity: .5;
   z-index: -10;
+}
+
+@media only screen and (max-width: 900px) {
+  .leave_button {
+    padding: .5em!important;
+    padding-right: 1em!important;
+    padding-left: 1em!important;
+    font-size: 1em!important;
+  }
 }
