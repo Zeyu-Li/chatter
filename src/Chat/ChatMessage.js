@@ -1,3 +1,4 @@
+import Avatar from 'react-avatar';
 import {currentUser} from './../Firebase/Firebase'
 import {getUsername} from './../Firestore/Firestore'
 import {styles} from '../styles/styles.js'
@@ -9,7 +10,7 @@ export const ChatMessage = ({message}) => {
 
     return (
         <>
-        <p title={messageClass === "speak-me" ? "You" : username} className={messageClass}>{text}<img style={styles.profileImage} src="https://cdn.discordapp.com/avatars/212613981465083906/8931720f485972ac9252a946a6e6285c.webp?size=256" /></p>
+        <p title={messageClass === "speak-me" ? "You" : username} className={messageClass}>{text}{messageClass === "speak-me" ? <></> : <Avatar style={{marginLeft: "10px"}} size={"32px"} textMarginRatio={.1} name={username} round={true} />}</p>
         </>
     )
 }

@@ -45,9 +45,6 @@ code {
 }
 .leave_button {
   float: right;
-  top: 20%;
-  -ms-transform: translate(0%, -20%);
-  transform: translate(0%, -20%);
 
   padding: .5em!important;
   padding-right: 2em!important;
