@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       {/* logo */}
       {/* routes */}
-    <Router>
+    <Router basename="/">
       <Switch>
         {/* Home Path */}
         <UnprotectedRoute isAuth={!!user} exact path="/">
