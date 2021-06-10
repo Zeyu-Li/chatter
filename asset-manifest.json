@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/chatter/static/css/main.83b69361.chunk.css",
+    "main.js": "/chatter/static/js/main.b5d8a79c.chunk.js",
+    "main.js.map": "/chatter/static/js/main.b5d8a79c.chunk.js.map",
+    "runtime-main.js": "/chatter/static/js/runtime-main.b62376c1.js",
+    "runtime-main.js.map": "/chatter/static/js/runtime-main.b62376c1.js.map",
+    "static/css/2.4c97ca4f.chunk.css": "/chatter/static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.bfa5c234.chunk.js": "/chatter/static/js/2.bfa5c234.chunk.js",
+    "static/js/2.bfa5c234.chunk.js.map": "/chatter/static/js/2.bfa5c234.chunk.js.map",
+    "static/js/3.d76d2901.chunk.js": "/chatter/static/js/3.d76d2901.chunk.js",
+    "static/js/3.d76d2901.chunk.js.map": "/chatter/static/js/3.d76d2901.chunk.js.map",
+    "index.html": "/chatter/index.html",
+    "static/css/2.4c97ca4f.chunk.css.map": "/chatter/static/css/2.4c97ca4f.chunk.css.map",
+    "static/css/main.83b69361.chunk.css.map": "/chatter/static/css/main.83b69361.chunk.css.map",
+    "static/js/2.bfa5c234.chunk.js.LICENSE.txt": "/chatter/static/js/2.bfa5c234.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b62376c1.js",
+    "static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.bfa5c234.chunk.js",
+    "static/css/main.83b69361.chunk.css",
+    "static/js/main.b5d8a79c.chunk.js"
+  ]
+}
