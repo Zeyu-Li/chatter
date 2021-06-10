@@ -58,4 +58,11 @@ export const styles = {
         right: "10px",
         bottom: "10px",
     },
+
+    // profile image
+    profileImage: {
+        marginLeft: "4px",
+        width: "32px",
+        borderRadius: "32px",
+    }
 }

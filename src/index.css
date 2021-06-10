@@ -70,9 +70,10 @@ code {
   padding: 7px;
   border-radius: 15px;
   border-bottom-left-radius: 0px;
+  z-index: 10;
 }
 .speak-you {
-  background-color: aliceblue;
+  background-color: #61aeff;
   word-wrap: break-word;
   width: max-content;
   max-width: 500px;
@@ -117,7 +118,6 @@ code {
     rgba(255, 255, 255, 0.7),
     rgba(255, 255, 255, 0.4)
   );
-  backdrop-filter: blur(.7rem);
 }
 
 /* backdrop */
@@ -136,6 +136,7 @@ code {
   max-height: 60vh;
   opacity: .5;
   z-index: -10;
+  filter: blur(4px);
 }
 
 @media only screen and (max-width: 900px) {

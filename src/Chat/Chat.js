@@ -6,6 +6,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 // icon from react-icons
 import {MdSend} from 'react-icons/md';
 
+import {getCurrentUsername} from './../Firestore/Firestore'
 import {ChatMessage} from './ChatMessage'
 import {sendMessage} from './sendMessage'
 import {styles} from '../styles/styles.js'
@@ -15,6 +16,7 @@ export default function Chat() {
     const history = useHistory()
     const end = useRef()
     const [chat_msg, set_msg] = useState('')
+    const [username, setUsername] = useState('')
     // exiting
     const leave = () => {
         let confirmer = window.confirm("If you leave now you will not see these messages again")
@@ -33,7 +35,18 @@ export default function Chat() {
     // change title
     useEffect(() => {
         document.title = "Chatter | Chat"
-    }, []);
+
+        // current user
+        const setUser = async () => {
+            const result = await getCurrentUsername().then(
+                // sets username
+                e=>{
+                    setUsername(e.user.name)
+                }
+            )
+        }
+        setUser()
+    }, [])
 
     const messageRef = firebase.firestore().collection('messages')
     const query = messageRef.orderBy('createdAt').limit(30)
@@ -49,7 +62,8 @@ export default function Chat() {
 
         // TODO: websockets + check message if time
         set_msg('')
-        await sendMessage(messageRef, chat_msg.trim())
+        console.log(username)
+        await sendMessage(messageRef, chat_msg.trim(), username)
         end.current.scrollIntoView({behavior: 'smooth'})
     }
 
