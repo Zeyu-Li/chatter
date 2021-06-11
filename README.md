@@ -4,7 +4,7 @@
 
 ![Vercel](https://vercelbadge.vercel.app/api/Zeyu-Li/chatter)
 
-A chatting app built on React-Firebase/Firestore that allows you to chat via text with random people.
+A realtime chatting app built on React-Firebase/Firestore that allows you to chat via text with other users.
 
 See the live demo [here:](https://chatter-zeyu-li.vercel.app/) [chatter-zeyu-li.vercel.app](https://chatter-zeyu-li.vercel.app/)
 
