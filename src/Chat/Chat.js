@@ -2,9 +2,10 @@ import react, {useState, useEffect, useCallback, useRef} from 'react'
 import { BrowserRouter as NavLink, Link, useHistory } from "react-router-dom"
 import {Form, Button, Col, InputGroup, FormControl} from 'react-bootstrap'
 import firebase from 'firebase/app'
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useCollectionData } from 'react-firebase-hooks/firestore'
 // icon from react-icons
-import {MdSend} from 'react-icons/md';
+import {MdSend} from 'react-icons/md'
+import Filter from 'bad-words'
 
 import {getCurrentUsername} from './../Firestore/Firestore'
 import {ChatMessage} from './ChatMessage'
@@ -52,6 +53,7 @@ export default function Chat() {
     const query = messageRef.orderBy('createdAt').limit(30)
 
     const [messages] = useCollectionData(query, {idField: "id"})
+    const filter = new Filter()
 
     // send message
     const send_msg = async () => {
@@ -82,7 +84,7 @@ export default function Chat() {
                 {/* chat message */}
                 {/* TODO: Map */}
                 {messages && messages.map((msg) => {
-                    return <ChatMessage message={msg} key={msg.id} />
+                    return <ChatMessage message={msg} filter={filter} key={msg.id} />
                 })}
                 <div ref={end}></div>
             </div>
