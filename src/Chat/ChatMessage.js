@@ -11,7 +11,7 @@ export const ChatMessage = ({message, filter}) => {
     // filter bad words
     return (
         <>
-            <p title={messageClass === "speak-me" ? "You" : username} className={messageClass}>{filter.clean(text)}{messageClass === "speak-me" ? <></> : <Avatar style={{marginLeft: "10px"}} size={"32px"} textMarginRatio={.1} name={username} round={true} />}</p>
+            <p title={messageClass === "speak-me" ? "You" : username} className={messageClass}>{text}{messageClass === "speak-me" ? <></> : <Avatar style={{marginLeft: "10px"}} size={"32px"} textMarginRatio={.1} name={username} round={true} />}</p>
         </>
     )
 }
