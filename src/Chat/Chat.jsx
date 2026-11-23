@@ -1,12 +1,12 @@
 import react, {useState, useEffect, useCallback, useRef} from 'react'
-import { BrowserRouter as NavLink, Link, useHistory } from "react-router-dom"
-import {Form, Button, Col, InputGroup, FormControl} from 'react-bootstrap'
-import firebase from 'firebase/app'
-import { useCollectionData } from 'react-firebase-hooks/firestore'
+import { useNavigate } from "react-router-dom"
+import {Button, InputGroup, FormControl} from 'react-bootstrap'
+import { collection, limit, orderBy, query as firestoreQuery } from 'firebase/firestore'
+import { useCollection } from 'react-firebase-hooks/firestore'
 // icon from react-icons
 import {MdSend} from 'react-icons/md'
-import Filter from 'bad-words'
 
+import {db} from './../Firebase/app'
 import {getCurrentUsername} from './../Firestore/Firestore'
 import {ChatMessage} from './ChatMessage'
 import {sendMessage} from './sendMessage'
@@ -14,7 +14,7 @@ import {styles} from '../styles/styles.js'
 
 export default function Chat() {
     // a standard chat room
-    const history = useHistory()
+    const navigate = useNavigate()
     const end = useRef()
     const [chat_msg, set_msg] = useState('')
     const [username, setUsername] = useState('')
@@ -22,7 +22,7 @@ export default function Chat() {
     const leave = () => {
         let confirmer = window.confirm("If you leave now you will not see these messages again")
         if( confirmer == true ) {
-            history.push('/home')
+            navigate('/home')
         }
     }
 
@@ -49,11 +49,11 @@ export default function Chat() {
         setUser()
     }, [])
 
-    const messageRef = firebase.firestore().collection('messages')
-    const query = messageRef.orderBy('createdAt').limit(30)
+    const messageRef = collection(db, 'messages')
+    const query = firestoreQuery(messageRef, orderBy('createdAt'), limit(30))
 
-    const [messages] = useCollectionData(query, {idField: "id"})
-    const filter = new Filter()
+    const [snapshot] = useCollection(query)
+    const messages = snapshot?.docs.map(doc => ({...doc.data(), id: doc.id}))
 
     // send message
     const send_msg = async () => {
@@ -72,7 +72,7 @@ export default function Chat() {
     return (
         <div className="main">
             <div className="backdropImgDiv">
-                <img src={process.env.PUBLIC_URL + '/img/rotatedLogo.svg'} alt="Backdrop" className="backdropImg" />
+                <img src={import.meta.env.BASE_URL + 'img/rotatedLogo.svg'} alt="Backdrop" className="backdropImg" />
             </div>
             <div className="inline bottom-space">
                 <h2 style={styles.chatTitle} className="chat-title">Chatting in room 1</h2>
@@ -84,7 +84,7 @@ export default function Chat() {
                 {/* chat message */}
                 {/* TODO: Map */}
                 {messages && messages.map((msg) => {
-                    return <ChatMessage message={msg} filter={filter} key={msg.id} />
+                    return <ChatMessage message={msg} key={msg.id} />
                 })}
                 <div ref={end}></div>
             </div>
@@ -102,11 +102,9 @@ export default function Chat() {
                     value={chat_msg}
                     title="Enter your message here" 
                     />
-                    <InputGroup.Append>
-                        <Button variant="primary" onClick={send_msg} title="Send">
-                            <MdSend size={18} />
-                        </Button>
-                    </InputGroup.Append>
+                    <Button variant="primary" onClick={send_msg} title="Send">
+                        <MdSend size={18} />
+                    </Button>
                 </InputGroup>
             </div>
         </div>

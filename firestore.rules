@@ -1,0 +1,50 @@
+rules_version = '2';
+
+// Least-privilege rules for the data the app reads and writes:
+//   names/{username}  -> { uuid }        username reservation (checked before sign-up)
+//   users/{uid}       -> { name }        the signed-in user's display name
+//   messages/{msgId}  -> { text, username, createdAt, uuid }
+// The detectEvilUsers Cloud Function uses the Admin SDK, which bypasses these rules.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function ownsName(name) {
+      let path = /databases/$(database)/documents/names/$(name);
+      return exists(path) && get(path).data.uuid == request.auth.uid;
+    }
+
+    // The register form checks a username is free before the account exists.
+    match /names/{name} {
+      allow get: if true;
+      allow create: if signedIn()
+        && name.size() <= 64
+        && request.resource.data.keys().hasOnly(['uuid'])
+        && request.resource.data.uuid == request.auth.uid;
+    }
+
+    match /users/{uid} {
+      allow get: if signedIn();
+      allow create, update: if signedIn()
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['name'])
+        && request.resource.data.name is string
+        && ownsName(request.resource.data.name);
+    }
+
+    match /messages/{msgId} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['text', 'username', 'createdAt', 'uuid'])
+        && request.resource.data.uuid == request.auth.uid
+        && request.resource.data.username
+          == get(/databases/$(database)/documents/users/$(request.auth.uid)).data.name
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 2000
+        && request.resource.data.createdAt == request.time;
+    }
+  }
+}

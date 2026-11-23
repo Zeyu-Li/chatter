@@ -1,4 +1,4 @@
-import { BrowserRouter as NavLink, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import React, {useState, useEffect} from 'react'
 import {Form, Button} from 'react-bootstrap'
 
@@ -48,7 +48,7 @@ export const ResetPassword = () => {
         <div className="container shadow-lg glassy" style={styles.formWrap}>
             <h2 style={styles.boxHeader}>Reset Password</h2>
             <Form noValidate validated={validated} onSubmit={onReset}> 
-                <Form.Group controlId="formBasicEmail" controlId="validationUserEmail">
+                <Form.Group className="mb-3" controlId="validationUserEmail">
                     <Form.Label><b>Email</b></Form.Label>
                     <Form.Control required isInvalid={InvalidEmail} type="email" placeholder="Enter email" title="Email" value={email} onChange={e => setEmail(e.target.value)} />
                     <Form.Control.Feedback type="invalid">
