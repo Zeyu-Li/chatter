@@ -1,6 +1,6 @@
 import react, {useState, useEffect} from 'react'
 import {Form, Button, Row, Col, Toast} from 'react-bootstrap'
-import { BrowserRouter as NavLink, Link, useHistory } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import {styles} from '../styles/styles.js'
 import {signIn} from '../Firebase/Firebase'
@@ -8,7 +8,7 @@ import {Popup} from '../Popup'
 
 export const Login = () => {
     // login is also the front/first screen
-    const history = useHistory()
+    const navigate = useNavigate()
     // change title
     useEffect(() => {
         document.title = "Chatter | Login"
@@ -25,7 +25,7 @@ export const Login = () => {
             .then(res => {
                 // console.log(res)
                 if (res === true) { 
-                    history.push('/home')
+                    navigate('/home')
                 } else {
                     event.preventDefault()
                     event.stopPropagation()
@@ -56,7 +56,7 @@ export const Login = () => {
         <div className="container shadow-lg glassy" style={styles.formWrap}>
             <h2 style={styles.boxHeader}>Login</h2>
             <Form noValidate validated={validated} onSubmit={submit}>
-                <Form.Group controlId="formBasicEmail" controlId="validationUserEmail">
+                <Form.Group className="mb-3" controlId="validationUserEmail">
                     <Form.Label><b>Email</b></Form.Label>
                     <Form.Control required type="email" placeholder="Enter email" title="Email" value={email} onChange={e => setEmail(e.target.value)} />
                     <Form.Control.Feedback type="invalid">
@@ -67,7 +67,7 @@ export const Login = () => {
                     </Form.Text> */}
                 </Form.Group>
 
-                <Form.Group controlId="formBasicPassword" controlId="validationUserPassword">
+                <Form.Group className="mb-3" controlId="validationUserPassword">
                     <Form.Label><b>Password</b></Form.Label>
                     <Form.Control required type="password" placeholder="Password" title="Password" value={password} onChange={e => setPassword(e.target.value)} />
                     <Form.Control.Feedback type="invalid">

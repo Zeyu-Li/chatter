@@ -3,7 +3,7 @@ import {currentUser} from './../Firebase/Firebase'
 import {getUsername} from './../Firestore/Firestore'
 import {styles} from '../styles/styles.js'
 
-export const ChatMessage = ({message, filter}) => {
+export const ChatMessage = ({message}) => {
     const {text, uuid, username} = message
 
     const messageClass = uuid === currentUser().id ? "speak-me" : "speak-you"

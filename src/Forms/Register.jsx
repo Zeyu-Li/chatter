@@ -1,6 +1,6 @@
-import { BrowserRouter as NavLink, Link, useHistory } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import react, {useState, useEffect} from 'react'
-import {Form, Button, Col} from 'react-bootstrap'
+import {Form, Button, Col, Row} from 'react-bootstrap'
 
 import {register, nameCheck, registerName1, registerName2} from '../Firebase/Firebase'
 import {styles} from '../styles/styles.js'
@@ -12,7 +12,7 @@ import { GoogleReCaptchaProvider, GoogleReCaptcha } from 'react-google-recaptcha
 export const Register = () => {
     // registers user
     
-    const history = useHistory()
+    const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -43,9 +43,10 @@ export const Register = () => {
                 setInvalidPassword(true)
                 throw "Could not register"
             })
-        await registerName1(username.trim())
-        await registerName2(username.trim()).then(()=>{
-            history.push('/')
+        // reserve the username before claiming it as the display name (enforced by firestore.rules)
+        await registerName2(username.trim())
+        await registerName1(username.trim()).then(()=>{
+            navigate('/')
         })
     }
 
@@ -83,41 +84,41 @@ export const Register = () => {
         <div className="container shadow-lg glassy" style={styles.formWrap}>
             <h2 style={styles.boxHeader}>Register</h2>
             <Form noValidate validated={validated} onSubmit={onRegister}>
-            <Form.Row>
-                <Form.Group as={Col} controlId="formGridUsername">
+            <Row>
+                <Form.Group as={Col} className="mb-3" controlId="formGridUsername">
                     <Form.Label><b>Username</b></Form.Label>
                     <Form.Control required isInvalid={usernameTakenError} type="text" placeholder="Username" title="Username" value={username} onChange={e=>setUsername(e.target.value)}/>
                     <Form.Control.Feedback type="invalid">
                         {!username.trim() || usernameTakenError ? "Username taken" : ""}
                     </Form.Control.Feedback>
                 </Form.Group>
-            </Form.Row>
-            <Form.Row>
-                <Form.Group as={Col} controlId="formGridEmail">
+            </Row>
+            <Row>
+                <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
                     <Form.Label><b>Email</b></Form.Label>
                     <Form.Control required isInvalid={validEmail} type="email" placeholder="Enter email" title="Email" value={email} onChange={e => setEmail(e.target.value)} />
                     <Form.Control.Feedback type="invalid">
                         This email is not valid
                     </Form.Control.Feedback>
                 </Form.Group>
-            </Form.Row>
-            <Form.Row>
+            </Row>
+            <Row>
 
-                <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Group as={Col} className="mb-3" controlId="formGridPassword">
                     <Form.Label><b>Password</b></Form.Label>
                     <Form.Control required isInvalid={invalidPassword} type="password" placeholder="Password" title="Password" value={password} onChange={e => setPassword(e.target.value)} />
                     <Form.Control.Feedback type="invalid">
                         This password is not valid (should be at least 6 characters)
                     </Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group as={Col} controlId="formGridPassword2">
+                <Form.Group as={Col} className="mb-3" controlId="formGridPassword2">
                     <Form.Label><b>Confirm Password</b></Form.Label>
                     <Form.Control required isInvalid={passwordNotMatch} type="password" placeholder="Confirm Password" title="Confirm Password"  value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
                     <Form.Control.Feedback type="invalid">
                         Passwords do not match
                     </Form.Control.Feedback>
                 </Form.Group>
-            </Form.Row>
+            </Row>
 
             {/* ~~Captcha~~ => (react-google-recaptcha) v3 */}
             {/* <Form.Group id="formGridCheckbox">

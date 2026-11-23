@@ -1,5 +1,5 @@
 import react, {useState, useEffect} from 'react'
-import { BrowserRouter as NavLink, useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import {Form, Button, Col} from 'react-bootstrap'
 
 import { currentUser, signOut } from '../Firebase/Firebase'
@@ -12,7 +12,7 @@ export default function Home() {
     const [loading, setLoading] = useState(false)
     const [user, setUser] = useState('')
 
-    const history = useHistory()
+    const navigate = useNavigate()
     // TODO: chat UID
     const handleClick = () => {
         // loading popup
@@ -21,7 +21,7 @@ export default function Home() {
 
         // TODO: pair with someone and send to room
         const UID = "1"
-        history.push('/chat/'+ UID)
+        navigate('/chat/'+ UID)
     }
 
     // change title
@@ -44,7 +44,7 @@ export default function Home() {
         // logout and go to login
         try {
             await signOut()
-            history.push('/')
+            navigate('/')
         } catch (e) {
             alert(e.message)
         }
@@ -55,11 +55,11 @@ export default function Home() {
         <div className="container shadow-lg glassy" style={styles.formWrap}>
             <h2 style={styles.boxHeader}>Hello {user}</h2>
             <Form>
-            <div className="home-buttons">
-                <Button variant="primary" type="submit" className="submit_button" onClick={handleClick} size="lg" title="Join Random Chatroom" block>
+            <div className="home-buttons d-grid gap-2">
+                <Button variant="primary" type="button" className="submit_button" onClick={handleClick} size="lg" title="Join Random Chatroom">
                     Join Random Chat Room
                 </Button>
-                <Button variant="danger" className="submit_button" size="lg" block onClick={logout} title="Logout" >
+                <Button variant="danger" type="button" className="submit_button" size="lg" onClick={logout} title="Logout" >
                     Logout
                 </Button>
             </div>
