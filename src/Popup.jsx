@@ -15,10 +15,10 @@ export const Popup = (props) => {
             <Toast.Header>
                 <img
                 src="holder.js/20x20?text=%20"
-                className="rounded mr-2"
+                className="rounded me-2"
                 alt=""
                 />
-                <strong className="mr-auto">Chatter</strong>
+                <strong className="me-auto">Chatter</strong>
                 <small></small>
             </Toast.Header>
             <Toast.Body>{props.msg}</Toast.Body>

@@ -1,10 +1,10 @@
-const functions = require("firebase-functions");
-const Filter = require("bad-words");
+// 1st-gen trigger API, kept so redeploying updates the existing function in place
+// (firebase-tools cannot upgrade a deployed 1st-gen function to 2nd gen).
+const functions = require("firebase-functions/v1");
+const { Filter } = require("bad-words");
 
-const admin = require("firebase-admin");
-admin.initializeApp();
-
-const db = admin.firestore();
+const { initializeApp } = require("firebase-admin/app");
+initializeApp();
 
 exports.detectEvilUsers = functions.firestore
     .document('messages/{msgId}')

@@ -1,4 +1,3 @@
-import firebase from 'firebase/app'
 import {getUsername} from './getUsername'
 import {currentUser} from '../Firebase/Firebase'
 

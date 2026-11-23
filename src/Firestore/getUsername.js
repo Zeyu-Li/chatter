@@ -1,11 +1,9 @@
-import firebase from 'firebase/app'
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '../Firebase/app'
 
 export const getUsername = async (userId) => {
     // gets user
-    const data = await firebase.firestore()
-        .collection('users')
-        .doc(userId)
-        .get()
+    const data = await getDoc(doc(db, 'users', userId))
 
     const user = data.data()
 

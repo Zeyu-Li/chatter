@@ -38,22 +38,17 @@ Chat Screen ^^
 
 ## Firebase
 
-Firestore properties for user:
+Firestore security rules live in [`firestore.rules`](firestore.rules) and deploy with `firebase deploy --only firestore:rules`. They only let signed-in users read the chat, post messages as themselves, and claim a username that is still free.
 
-```firebase
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow write: if false;
-      allow read: if request.auth.uid != null;
-    }
-    
-    // allow user to change own data 
-    match /user/{userId} {
-    	allow write: if request.auth.uid == userId;
-    }
-  }
-}
+The `functions/` Cloud Function (`detectEvilUsers`) masks profanity in new messages. It runs on Node.js 22.
+
+## Development
+
+Requires Node.js 24 and Yarn 1.
+
+```sh
+yarn install
+yarn start   # dev server
+yarn build   # production build in build/
+yarn test
 ```
-

@@ -1,8 +1,9 @@
-import firebase from 'firebase/app'
+import { signOut as firebaseSignOut } from 'firebase/auth'
+import { auth } from './app'
 
 export const signOut = async () => {
     try {
-        await firebase.auth().signOut()
+        await firebaseSignOut(auth)
     } catch (e) {
         throw new Error("Cannot sign out")
     }

@@ -1,11 +1,12 @@
-import firebase from 'firebase'
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from './app'
 
 // const firestore = firebase.firestore();
 
 export const nameCheck = async (username) => {
-    return await firebase.firestore().collection('names').doc(username).get().then(doc => {
+    return await getDoc(doc(db, 'names', username)).then(doc => {
         // if exists in collection, throw error and cancel operation
-        if (doc.exists) {
+        if (doc.exists()) {
             throw "Already exists"
         }
     }).catch(err => {

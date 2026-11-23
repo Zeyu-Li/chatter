@@ -1,13 +1,13 @@
 import {currentUser} from './../Firebase/Firebase'
-import firebase from 'firebase/app'
+import { addDoc, serverTimestamp } from 'firebase/firestore'
 
 export const sendMessage = async (messageRef, message, username) => {
     const uuid = currentUser().id
 
-    return await messageRef.add({
+    return await addDoc(messageRef, {
         text: message,
         username,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        createdAt: serverTimestamp(),
         uuid,
     })
 }
